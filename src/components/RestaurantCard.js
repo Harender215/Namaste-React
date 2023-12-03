@@ -1,18 +1,26 @@
 import React from "react";
 import { CDN_URL } from '../utils/constants'
 
-const RestaurantCard = () => {
+const RestaurantCard = (props) => {
+    const {
+      name,
+      cuisines,
+      costForTwo,
+      cloudinaryImageId,
+      avgRating
+    } = props.item
+
     return (
       <div className="res-card" style={{backgroundColor: "#f0f0f0"}}>
         <img
           className="res-logo"
-          src={CDN_URL}
+          src={CDN_URL + cloudinaryImageId}
           alt="res-card-img"
         />
-        <span>Meghna Foods</span> <br />
-        <span>KFC, North Indian, Asian</span> <br />
-        <span>4.4 star</span> <br/>
-        <span>38 minutes</span>
+        <span>{name}</span> <br />
+        <span>{cuisines}</span> <br />
+        <span>{avgRating}</span> <br/>
+        <span>{costForTwo}</span>
       </div>
     );
 };
