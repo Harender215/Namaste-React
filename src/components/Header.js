@@ -1,4 +1,5 @@
 import React from "react";
+import { LOGO_URL } from '../utils/constants'
 
 const Header = () => {
     return (
@@ -6,7 +7,7 @@ const Header = () => {
         <div className="logo-container">
           <img
             className="logo"
-            src="https://www.logodesign.net/logo/smoking-burger-with-lettuce-3624ld.png"
+            src={LOGO_URL}
             alt="food_app_logo"
           />
         </div>
