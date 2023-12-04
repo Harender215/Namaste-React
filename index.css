@@ -43,3 +43,14 @@
     margin: 10px;
     cursor: pointer;
 }
+
+.shrimmer-container{
+    display: flex;
+}
+
+.shrimmer-card{
+    height: 280px;
+    width: 300px;
+    margin: 12px;
+    background-color: #f0f0f0;
+}

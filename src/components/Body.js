@@ -1,9 +1,10 @@
 import React from "react";
 import RestaurantCard from "./RestaurantCard";
 import React, { useEffect, useState } from "react";
+import Shrimmer from "./Shrimmer";
 
 const Body = () => {
-  const [listOfRestaurant, setListOfRestaurant] = useState(null);
+  const [listOfRestaurant, setListOfRestaurant] = useState([]);
 
   useEffect(()=>{
     fetchData()
@@ -12,8 +13,12 @@ const Body = () => {
   const fetchData = async () => {
     const data = await fetch("https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.4384489&lng=77.0407101&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING")
     const json = await data.json()
-    console.log(json.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+    // console.log(json.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
     setListOfRestaurant(json.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+  }
+
+  if(listOfRestaurant.length===0){
+    return <Shrimmer/>
   }
   return (
     <div className="body">
