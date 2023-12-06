@@ -23,9 +23,9 @@ const Body = () => {
   return (
     <div className="body">
       <div className="filter">
-        <button className="filter-btn" onClick={()=>{}}>Top rated RestaurantCard</button>
+        <button className="px-3 py-1  bg-green-200 rounded-sm m-2" onClick={()=>{}}>Top rated Restaurant</button>
       </div>
-      <div className="res-container">
+      <div className="flex flex-wrap">
         {
           listOfRestaurant?.map((item)=>(
             <RestaurantCard item={item.info} />
