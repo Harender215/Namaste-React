@@ -1,37 +1,38 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from "react";
 
 const RestaurantMenu = () => {
-    const [resInfo, setResInfo] = useState(null)
+  const [resInfo, setResInfo] = useState(null);
 
-    useEffect(()=>{
-        fetchData()
-    },[])
+  useEffect(() => {
+    fetchData();
+  }, []);
 
-    const fetchData = async () => {
-        const data = await fetch("https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.4384489&lng=77.0407101&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING")
-        const json = await data.json()
-        const res = json.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
-        setResInfo(res)
-    }
-    console.log(resInfo)
-    console.log(resInfo[0].info.name)
-    const {
-        name,
-        cuisines,
-        costForTwo
-    } = resInfo[0].info
+  const fetchData = async () => {
+    const data = await fetch(
+      "https://corsproxy.io/?https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=28.4384489&lng=77.0407101&restaurantId=693409&catalog_qa=undefined&submitAction=ENTER"
+    );
+    const json = await data.json();
+    setResInfo(json.data);
+  };
+
+  const data =
+    resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card
+      ?.itemCards;
+  console.log(data);
+
+  // console.log(
+  //   resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card?.itemCards
+  // );
+  // console.log()
   return (
     <div>
-      <h1>{name}</h1>
-      <h2>{cuisines.join(", ")}</h2>
-      <h3>{costForTwo}</h3>
       <ul>
-        <li>Biryani</li>
-        <li>Burgur</li>
-        <li>Diet coke</li>
+        {data?.map((item) => (
+          <li>{item?.card?.info?.name}</li>
+        ))}
       </ul>
     </div>
-  )
-}
+  );
+};
 
-export default RestaurantMenu
+export default RestaurantMenu;
