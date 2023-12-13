@@ -2,6 +2,7 @@ import React from "react";
 import RestaurantCard from "./RestaurantCard";
 import React, { useEffect, useState } from "react";
 import Shrimmer from "./Shrimmer";
+import { Link } from "react-router-dom";
 
 const Body = () => {
   const [listOfRestaurant, setListOfRestaurant] = useState([]);
@@ -28,7 +29,7 @@ const Body = () => {
       <div className="flex flex-wrap">
         {
           listOfRestaurant?.map((item)=>(
-            <RestaurantCard item={item.info} />
+            <Link to={"/restaurant/"+item.info.id} key={item.info.id}><RestaurantCard  item={item.info} /> </Link>
           ))
         }
         

@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { MENU_API } from "../utils/constants";
 
 const RestaurantMenu = () => {
   const [resInfo, setResInfo] = useState(null);
+  const {resId} = useParams();
 
   useEffect(() => {
     fetchData();
@@ -9,7 +12,7 @@ const RestaurantMenu = () => {
 
   const fetchData = async () => {
     const data = await fetch(
-      "https://corsproxy.io/?https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=28.4384489&lng=77.0407101&restaurantId=693409&catalog_qa=undefined&submitAction=ENTER"
+      MENU_API + resId
     );
     const json = await data.json();
     setResInfo(json.data);
@@ -28,7 +31,7 @@ const RestaurantMenu = () => {
     <div>
       <ul>
         {data?.map((item) => (
-          <li>{item?.card?.info?.name}</li>
+          <li key={item?.card?.info?.name}>{item?.card?.info?.name}-{item?.card?.info?.price || item?.card?.info?.defaultPrice}</li>
         ))}
       </ul>
     </div>
